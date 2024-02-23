@@ -1,0 +1,67 @@
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE_NAME = 'miniproj'
+        GITHUB_REPO_URL = 'https://github.com/ume950/SPE_MINI_PROJECT.git'
+        MAVEN_HOME = '/etc/maven/usr/share/maven'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Checkout the code from the GitHub repository
+                    git branch: 'main', url: "${GITHUB_REPO_URL}"
+                }
+            }
+        }
+        stage('Maven Build') {
+                            steps {
+                                script {
+                                    env.PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
+                                    sh 'mvn clean install'
+                                }
+                            }
+          }
+        stage('Run Tests') {
+                            steps {
+                                script
+                                {
+                                          sh 'mvn test'
+                                }
+                               }
+                         }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                }
+            }
+        }
+
+        stage('Push Docker Images') {
+            steps {
+                script {
+                    docker.withRegistry('', 'DockerHubCred') {
+                        sh 'docker tag ${DOCKER_IMAGE_NAME} umeshjaware/miniproj'
+                        sh 'docker push umeshjaware/miniproj' // Corrected the username
+                    }
+                }
+            }
+        }
+
+        stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'inventory'
+                     )
+                }
+            }
+        }
+
+    }
+}
