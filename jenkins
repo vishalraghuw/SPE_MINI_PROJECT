@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'miniproj'
-        GITHUB_REPO_URL = 'https://github.com/ume950/SPE_MINI_PROJECT.git'
+        GITHUB_REPO_URL = 'https://github.com/vishalraghuw/SPE_MINI_PROJECT.git'
         MAVEN_HOME = '/etc/maven/usr/share/maven'
     }
 
@@ -45,8 +45,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag ${DOCKER_IMAGE_NAME} umeshjaware/miniproj'
-                        sh 'docker push umeshjaware/miniproj' // Corrected the username
+                        sh 'docker tag ${DOCKER_IMAGE_NAME} vishal6266/miniproj'
+                        sh 'docker push vishal6266/miniproj' // Corrected the username
                     }
                 }
             }
