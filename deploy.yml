@@ -1,12 +1,12 @@
 ---
 - name: Pull Docker Image from Docker Hub
   hosts: localhost
-  remote_user: umesh
+  remote_user: vishal-raghuwanshi
   become: false
   tasks:
     - name: Pull Docker Image
       docker_image:
-        name: "umeshjaware/miniproj"
+        name: "vishal6266/miniproj"
         source: pull
       register: docker_pull_result
 
@@ -19,4 +19,4 @@
         name: docker
         state: started
     - name: Running container
-      shell: docker run -it -d --name miniproj umeshjaware/miniproj
+      shell: docker run -it -d --name miniproj vishal6266/miniproj
