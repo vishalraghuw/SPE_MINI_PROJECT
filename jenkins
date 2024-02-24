@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'miniproj'
+        DOCKER_IMAGE_NAME = 'calculator'
         GITHUB_REPO_URL = 'https://github.com/vishalraghuw/SPE_MINI_PROJECT.git'
         MAVEN_HOME = '/etc/maven/usr/share/maven'
     }
@@ -46,7 +46,7 @@ pipeline {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
                         sh 'docker tag ${DOCKER_IMAGE_NAME} vishal6266/miniproj'
-                        sh 'docker push vishal6266/miniproj' // Corrected the username
+                        sh 'docker push vishal6266/calculator' // Corrected the username
                     }
                 }
             }
