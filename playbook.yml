@@ -7,10 +7,10 @@
         state: started
 
     - name: Pull docker image
-      shell: docker pull docker.io/vishal6266/miniproj
+      shell: docker pull docker.io/vishal6266/calculator
 
     - name: Run container
-      shell: docker run -it -d vishal6266/miniproj
+      shell: docker run -it -d vishal6266/calculator
       register: run_container_output
 
     - name: Display output of docker run command
