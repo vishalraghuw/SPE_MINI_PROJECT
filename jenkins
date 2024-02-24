@@ -45,7 +45,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag ${DOCKER_IMAGE_NAME} vishal6266/miniproj'
+                        sh 'docker tag ${DOCKER_IMAGE_NAME} vishal6266/calculator'
                         sh 'docker push vishal6266/calculator' // Corrected the username
                     }
                 }
