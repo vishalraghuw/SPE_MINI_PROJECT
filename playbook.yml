@@ -16,5 +16,3 @@
     - name: Display output of docker run command
       debug:
         var: run_container_output.stdout_lines
-   
-
