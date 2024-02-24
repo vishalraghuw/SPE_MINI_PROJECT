@@ -1,67 +1,79 @@
 pipeline {
-    agent any
+    agent any // Define the agent where the pipeline will execute
 
     environment {
-        DOCKER_IMAGE_NAME = 'calculator'
-        GITHUB_REPO_URL = 'https://github.com/vishalraghuw/SPE_MINI_PROJECT.git'
-        MAVEN_HOME = '/etc/maven/usr/share/maven'
+        // Define environment variables used throughout the pipeline
+        DOCKER_IMAGE_NAME = 'calculator' // Name of the Docker image
+        GITHUB_REPO_URL = 'https://github.com/vishalraghuw/SPE_MINI_PROJECT.git' // URL of the GitHub repository
+        MAVEN_HOME = '/etc/maven/usr/share/maven' // Path to Maven installation directory
     }
 
     stages {
+        // Checkout stage to retrieve the source code from the GitHub repository
         stage('Checkout') {
             steps {
                 script {
-                    // Checkout the code from the GitHub repository
+                    // Clone the GitHub repository to the workspace
                     git branch: 'main', url: "${GITHUB_REPO_URL}"
                 }
             }
         }
+        
+        // Maven Build stage to compile and package the Java application using Maven
         stage('Maven Build') {
-                            steps {
-                                script {
-                                    env.PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
-                                    sh 'mvn clean install'
-                                }
-                            }
-          }
+            steps {
+                script {
+                    // Set up Maven environment and execute clean install
+                    env.PATH = "${env.MAVEN_HOME}/bin:${env.PATH}"
+                    sh 'mvn clean install'
+                }
+            }
+        }
+        
+        // Run Tests stage to execute unit tests using Maven
         stage('Run Tests') {
-                            steps {
-                                script
-                                {
-                                          sh 'mvn test'
-                                }
-                               }
-                         }
+            steps {
+                script {
+                    // Execute Maven tests
+                    sh 'mvn test'
+                }
+            }
+        }
+        
+        // Build Docker Image stage to create a Docker image for the Java application
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image
+                    // Build Docker image from Dockerfile in the current directory
                     docker.build("${DOCKER_IMAGE_NAME}", '.')
                 }
             }
         }
-
+        
+        // Push Docker Images stage to push the built Docker image to Docker Hub
         stage('Push Docker Images') {
             steps {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
+                        // Tag the Docker image with Docker Hub repository name and push it
                         sh 'docker tag ${DOCKER_IMAGE_NAME} vishal6266/calculator'
-                        sh 'docker push vishal6266/calculator' // Corrected the username
+                        sh 'docker push vishal6266/calculator'
                     }
                 }
             }
         }
-
+        
+        // Run Ansible Playbook stage to deploy the application using Ansible
         stage('Run Ansible Playbook') {
             steps {
                 script {
+                    // Execute Ansible playbook for deployment
                     ansiblePlaybook(
-                        playbook: 'deploy.yml',
-                        inventory: 'inventory'
-                     )
+                        playbook: 'deploy.yml', // Path to Ansible playbook
+                        inventory: 'inventory' // Inventory file for Ansible hosts
+                    )
                 }
             }
         }
-
     }
 }
