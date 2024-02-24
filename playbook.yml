@@ -1,18 +1,31 @@
-- name: Pull docker image of Calculator
+# Ansible playbook to manage Docker containers
+
+- name: Pull Docker image of Calculator
   hosts: all
   tasks:
-    - name: Start docker service
+    # Task to ensure Docker service is started
+    - name: Start Docker service
       service:
         name: docker
         state: started
 
-    - name: Pull docker image
+    # Task to pull Docker image
+    - name: Pull Docker image
       shell: docker pull docker.io/vishal6266/calculator
 
+    # Task to run a container
     - name: Run container
       shell: docker run -it -d vishal6266/calculator
       register: run_container_output
 
+    # Task to display output of docker run command
     - name: Display output of docker run command
       debug:
         var: run_container_output.stdout_lines
+
+    # Additional comments for clarity and understanding
+    # The following tasks are responsible for managing a Docker container running the calculator application.
+    # The first task ensures that the Docker service is started on the target hosts.
+    # The second task pulls the Docker image named "calculator" from the official Docker repository.
+    # The third task runs a Docker container based on the pulled image in detached mode (-d) and registers the output.
+    # Finally, the fourth task displays the output of the docker run command for further analysis.
