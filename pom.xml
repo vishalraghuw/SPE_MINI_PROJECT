@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Maven Project Object Model (POM) file -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <!-- Define the project model version -->
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
-  <artifactId>calcy</artifactId>
-  <version>1.0-SNAPSHOT</version>
+    <!-- Define the coordinates of the project -->
+    <groupId>com.example</groupId> <!-- Group ID for the project -->
+    <artifactId>calcy</artifactId> <!-- Artifact ID for the project -->
+    <version>1.0-SNAPSHOT</version> <!-- Version of the project -->
 
-  <build>
+    <!-- Define the build configuration -->
+    <build>
+        <!-- Maven build configuration -->
         <plugins>
+            <!-- Maven Assembly Plugin configuration -->
             <plugin>
+                <!-- Define the Maven plugin group ID -->
                 <groupId>org.apache.maven.plugins</groupId>
+                <!-- Define the Maven plugin artifact ID -->
                 <artifactId>maven-assembly-plugin</artifactId>
+                <!-- Define plugin executions -->
                 <executions>
+                    <!-- Define a plugin execution -->
                     <execution>
+                        <!-- Define the phase in which the plugin should execute -->
                         <phase>package</phase>
+                        <!-- Define the goals to execute -->
                         <goals>
+                            <!-- Define the goal to create a single output file -->
                             <goal>single</goal>
                         </goals>
+                        <!-- Configure the plugin execution -->
                         <configuration>
+                            <!-- Configure the assembly archive -->
                             <archive>
+                                <!-- Define the manifest file -->
                                 <manifest>
+                                    <!-- Specify the main class for the executable JAR -->
                                     <mainClass>com.example.App</mainClass>
                                 </manifest>
                             </archive>
+                            <!-- Specify the descriptor references -->
                             <descriptorRefs>
+                                <!-- Use the predefined descriptor for creating JARs with dependencies -->
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
                         </configuration>
@@ -34,31 +54,46 @@
             </plugin>
         </plugins>
     </build>
-        
-     <properties>
+    
+    <!-- Define project properties -->
+    <properties>
+        <!-- Define the source and target Java compiler versions -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <!-- Define the project build source encoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
-     <dependencies>
+    <!-- Define project dependencies -->
+    <dependencies>
+        <!-- JUnit dependency for testing -->
         <dependency>
+            <!-- Define the dependency group ID -->
             <groupId>junit</groupId>
+            <!-- Define the dependency artifact ID -->
             <artifactId>junit</artifactId>
+            <!-- Define the dependency version -->
             <version>RELEASE</version>
+            <!-- Define the dependency scope -->
             <scope>test</scope>
         </dependency>
+        <!-- Log4j API dependency -->
         <dependency>
+            <!-- Define the dependency group ID -->
             <groupId>org.apache.logging.log4j</groupId>
+            <!-- Define the dependency artifact ID -->
             <artifactId>log4j-api</artifactId>
+            <!-- Define the dependency version -->
             <version>2.14.0</version>
         </dependency>
+        <!-- Log4j Core dependency -->
         <dependency>
+            <!-- Define the dependency group ID -->
             <groupId>org.apache.logging.log4j</groupId>
+            <!-- Define the dependency artifact ID -->
             <artifactId>log4j-core</artifactId>
+            <!-- Define the dependency version -->
             <version>2.14.0</version>
         </dependency>
-
     </dependencies>
 </project>
-    
