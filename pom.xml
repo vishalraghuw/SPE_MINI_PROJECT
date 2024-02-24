@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-    This is the Maven POM (Project Object Model) file for the Calculator project.
-    It defines project configuration, dependencies, and build settings.
--->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <!-- Define the model version -->
-    <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>calcy</artifactId>
+  <version>1.0-SNAPSHOT</version>
 
-    <!-- Define project coordinates -->
-    <groupId>com.example</groupId> <!-- Group ID for the project -->
-    <artifactId>calcy</artifactId> <!-- Artifact ID for the project -->
-    <version>1.0-SNAPSHOT</version> <!-- Version of the project -->
-
-    <!-- Configure the build process -->
-    <build>
+  <build>
         <plugins>
-            <!-- Maven Assembly Plugin configuration -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
-                        <phase>package</phase> <!-- Phase in which the plugin is executed -->
+                        <phase>package</phase>
                         <goals>
-                            <goal>single</goal> <!-- Goal to execute -->
+                            <goal>single</goal>
                         </goals>
-                        <!-- Configuration for creating an executable JAR with dependencies -->
                         <configuration>
                             <archive>
-                                <!-- Define the main class for the executable JAR -->
                                 <manifest>
                                     <mainClass>com.example.App</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
-                                <!-- Use 'jar-with-dependencies' descriptor for including dependencies in the JAR -->
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
                         </configuration>
@@ -47,38 +34,31 @@
             </plugin>
         </plugins>
     </build>
-
-    <!-- Define project properties -->
-    <properties>
-        <!-- Set Java compiler source and target versions -->
-        <maven.compiler.source>11</maven.compiler.source> <!-- Java source version -->
-        <maven.compiler.target>11</maven.compiler.target> <!-- Java target version -->
-        <!-- Define project build source encoding -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> <!-- Character encoding for source files -->
+        
+     <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <!-- Define project dependencies -->
-    <dependencies>
-        <!-- Dependency for JUnit testing framework -->
+    
+     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>RELEASE</version>
-            <scope>test</scope> <!-- Scope of the dependency -->
+            <scope>test</scope>
         </dependency>
-        <!-- Dependency for Log4j API -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
             <version>2.14.0</version>
         </dependency>
-        <!-- Dependency for Log4j Core -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.14.0</version>
         </dependency>
-    </dependencies>
 
+    </dependencies>
 </project>
--->
+    
