@@ -19,7 +19,7 @@ public class App {
             double num1, num2;
 
             do {
-                System.out.println("Calculator using UMESH. \n Chse:");
+                System.out.println("Calculator using VISHAL. \n Chse:");
                 System.out.print("1. Factorial\n2. Square root\n3. Power\n4. Natural Logarithm\n" +
                         "5. Exit\nEnter your choice: ");
 
