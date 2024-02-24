@@ -1,10 +1,4 @@
-
 package com.example;
-
-import java.util.InputMismatchException;
-import java.util.Scanner;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
@@ -88,39 +82,34 @@ public class App {
     }
 
     public static double performAddition(double v, double v1) {
-        double result = v + v1;
-        return result;
+        return v + v1;
     }
 
     public static double performSubtraction(double v, double v1){
-        double result = v - v1;
-        return result;
+        return v - v1;
     }
 
     public static double performMultiplication(double v, double v1) {
-        double result = v * v1;
-        return result;
+        return v * v1;
     }
 
     public static double performDivision(double v, double v1) {
-        double result = v / v1;
-        return result;
+        return v / v1;
     }
-    
+
     public static double performSquareRoot(double v) {
-        double result = Math.sqrt(v);
-        return result;
+        return Math.sqrt(v);
     }
 
     public static double performFactorial(double v) {
         if (v < 0) {
             return 1;
         } else {
-            int result = 1;
+            double result = 1;
             for (int i = 2; i <= v; i++) {
                 result *= i;
             }
-            return +result;
+            return result;
         }
     }
 
@@ -128,13 +117,11 @@ public class App {
         if (v <= 0) {
             return 0;
         } else {
-            double result = Math.log(v);
-            return +result;
+            return Math.log(v);
         }
     }
 
     public static double performPower(double v, double v1){
-        double result = Math.pow(v,v1);
-        return result;
+        return Math.pow(v,v1);
     }
 }
