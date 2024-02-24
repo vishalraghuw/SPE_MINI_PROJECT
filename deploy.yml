@@ -6,7 +6,7 @@
   tasks:
     - name: Pull Docker Image
       docker_image:
-        name: "vishal6266/miniproj"
+        name: "vishal6266/calculator"
         source: pull
       register: docker_pull_result
 
@@ -19,4 +19,4 @@
         name: docker
         state: started
     - name: Running container
-      shell: docker run -it -d --name miniproj vishal6266/miniproj
+      shell: docker run -it -d --name miniproj vishal6266/calculator
