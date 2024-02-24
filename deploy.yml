@@ -1,22 +1,32 @@
 ---
-- name: Pull Docker Image from Docker Hub
-  hosts: localhost
-  remote_user: vishal-raghuwanshi
-  become: false
+# Ansible playbook to pull a Docker image from Docker Hub and run a container
+
+# Define playbook-level metadata
+- name: Pull Docker Image and Run Container  # Name of the playbook task
+  hosts: localhost  # Specify the target host
+  remote_user: vishal-raghuwanshi  # Remote user to connect to the host
+  become: false  # Do not escalate privileges to root
+
+  # Define tasks to be executed on the target host
   tasks:
-    - name: Pull Docker Image
-      docker_image:
-        name: "vishal6266/calculator"
-        source: pull
-      register: docker_pull_result
+    # Task to pull the Docker image
+    - name: Pull Docker Image  # Name of the task
+      docker_image:  # Ansible module to manage Docker images
+        name: "vishal6266/calculator"  # Name of the Docker image to pull from Docker Hub
+        source: pull  # Specify the action to perform (pull)
+      register: docker_pull_result  # Register the result of the Docker image pull operation
 
-    - name: Display Docker Pull Result
-      debug:
-        var: docker_pull_result
+    # Task to display the result of the Docker image pull operation
+    - name: Display Docker Pull Result  # Name of the task
+      debug:  # Ansible module to print debug messages
+        var: docker_pull_result  # Display the variable containing the Docker pull result
 
-    - name: Start Docker service
-      service:
-        name: docker
-        state: started
-    - name: Running container
-      shell: docker run -it -d --name calculator vishal6266/calculator
+    # Task to start the Docker service
+    - name: Start Docker Service  # Name of the task
+      service:  # Ansible module to manage system services
+        name: docker  # Specify the name of the Docker service
+        state: started  # Specify the desired state of the service (started)
+
+    # Task to run a Docker container
+    - name: Run Docker Container  # Name of the task
+      shell: docker run -it -d --name calculator vishal6266/calculator  # Command to run the Docker container
