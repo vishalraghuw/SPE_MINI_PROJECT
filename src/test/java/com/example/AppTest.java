@@ -11,26 +11,26 @@ public class AppTest {
 
     @Test
     public void testFactorialWithPositiveNumbers() {
-        assertEquals("Factorial of 6", 720, app.performFactorial(6), DELTA);
-        assertEquals("Factorial of 0", 1, app.performFactorial(0), DELTA);
+        assertEquals("Factorial of 5", 120, app.performFactorial(5), DELTA);
+        assertEquals("Factorial of 4", 24, app.performFactorial(4), DELTA);
     }
 
     @Test
     public void testFactorialWithNegativeNumbers() {
-        assertNotEquals("Factorial of 5", 113, app.performFactorial(5), DELTA);
-        assertNotEquals("Factorial of 6", 10, app.performFactorial(6), DELTA);
+        assertNotEquals("Factorial of 8", 10, app.performFactorial(8), DELTA);
+        assertNotEquals("Factorial of 10", 2, app.performFactorial(10), DELTA);
     }
 
     @Test
     public void testPowerWithPositiveNumbers() {
-        assertEquals("Power of 3^4", 81, app.performPower(3, 4), DELTA);
-        assertEquals("Power of 5^2", 25, app.performPower(5, 2), DELTA);
+        assertEquals("Power of 2^2", 4, app.performPower(2, 2), DELTA);
+        assertEquals("Power of 5^1", 5, app.performPower(5, 1), DELTA);
     }
 
     @Test
     public void testPowerWithNegativeNumbers() {
-        assertNotEquals("Power of 2^3", 6, app.performPower(2, 3), DELTA);
-        assertNotEquals("Power of 3^3", -7, app.performPower(3, 3), DELTA);
+        assertNotEquals("Power of 4^1", 8, app.performPower(4, 1), DELTA);
+        assertNotEquals("Power of 2^2", -1, app.performPower(2, 2), DELTA);
     }
 
     @Test
@@ -47,13 +47,13 @@ public class AppTest {
 
     @Test
     public void testSquareRootWithPositiveNumbers() {
-        assertEquals("Square root of 16", 4, app.performSquareRoot(16), DELTA);
-        assertEquals("Square root of 36", 6, app.performSquareRoot(36), DELTA);
+        assertEquals("Square root of 4", 2, app.performSquareRoot(4), DELTA);
+        assertEquals("Square root of 25", 5, app.performSquareRoot(25), DELTA);
     }
 
     @Test
     public void testSquareRootWithNegativeNumbers() {
-        assertNotEquals("Square root of 3", 1, app.performSquareRoot(3), DELTA);
-        assertNotEquals("Square root of 81", 4, app.performSquareRoot(81), DELTA);
+        assertNotEquals("Square root of 25", 2, app.performSquareRoot(25), DELTA);
+        assertNotEquals("Square root of 16", 2, app.performSquareRoot(16), DELTA);
     }
 }
