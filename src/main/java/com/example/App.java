@@ -6,11 +6,11 @@ public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Welcome to Basic Calculator!");
+        System.out.println("Welcome to Calculator!");
 
         while (true) {
             // Displaying operation choices
-            System.out.println("Please select the operation you want to perform:");
+            System.out.println("select the operation:");
             System.out.println("1. Addition");
             System.out.println("2. Subtraction");
             System.out.println("3. Multiplication");
